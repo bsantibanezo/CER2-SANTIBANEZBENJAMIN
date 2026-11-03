@@ -27,6 +27,15 @@
                         <a class="nav-link" href="{% url 'catalogo' %}">Catálogo</a>
                     </li>
                 </ul>
+                {% if user.is_authenticated %}
+                    <span class="navbar-text me-3">{{ user.username }}</span>
+                    <form method="post" action="{% url 'logout' %}" class="d-flex">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-light btn-sm">Cerrar sesión</button>
+                    </form>
+                {% else %}
+                    <a class="btn btn-outline-light btn-sm" href="{% url 'login' %}">Iniciar sesión</a>
+                {% endif %}
             </div>
         </div>
     </nav>
