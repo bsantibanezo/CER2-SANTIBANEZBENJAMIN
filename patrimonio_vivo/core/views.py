@@ -1,17 +1,11 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, permission_required
+from django.db.models import Count
 from django.shortcuts import render, get_object_or_404, redirect
+
 from .forms import LugarForm
+from .models import Categoria, LugarPatrimonial
 
-from django.shortcuts import get_object_or_404, render
-
-from .models import LugarPatrimonial
-
-# Create your views here.
-
-def inicio(request):
-    contexto = {'nombre': 'Benjamín'}
-    return render(request, 'core/inicio.html', contexto)
 
 def inicio(request):
     contexto = {'nombre': 'Benjamín'}
@@ -20,11 +14,32 @@ def inicio(request):
 
 def catalogo(request):
     lugares = LugarPatrimonial.objects.select_related('categoria')
-    return render(request, 'core/catalogo.html', {'lugares': lugares})
+    categorias = Categoria.objects.all()
+
+    categoria_id = request.GET.get('categoria', '')
+    if categoria_id.isdigit():
+        categoria_id = int(categoria_id)
+        lugares = lugares.filter(categoria_id=categoria_id)
+    else:
+        categoria_id = None
+
+    contexto = {
+        'lugares': lugares,
+        'categorias': categorias,
+        'categoria_id': categoria_id,
+    }
+    return render(request, 'core/catalogo.html', contexto)
+
 
 def detalle(request, pk):
     lugar = get_object_or_404(LugarPatrimonial.objects.select_related('categoria'), pk=pk)
     return render(request, 'core/detalle.html', {'lugar': lugar})
+
+
+def lista_categorias(request):
+    categorias = Categoria.objects.annotate(total=Count('lugares'))
+    return render(request, 'core/categorias.html', {'categorias': categorias})
+
 
 @login_required
 def gestion(request):

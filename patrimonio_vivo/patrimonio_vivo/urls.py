@@ -29,5 +29,6 @@ urlpatterns = [
     path('gestion/', views.gestion, name='gestion'),
     path('gestion/nuevo/', views.lugar_crear, name='lugar_crear'),
     path('gestion/<int:pk>/editar/', views.lugar_editar, name='lugar_editar'),
+    path('categorias/', views.lista_categorias, name='categorias'),
    
 ]

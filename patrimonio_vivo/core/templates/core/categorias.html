@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Categorías · Patrimonio Vivo{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Categorías patrimoniales</h1>
+
+    <div class="categorias-lista">
+        {% for categoria in categorias %}
+            <a href="{% url 'catalogo' %}?categoria={{ categoria.pk }}" class="categoria-item">
+                <h2>{{ categoria.nombre }}</h2>
+                <p>{{ categoria.descripcion }}</p>
+                <span>{{ categoria.total }} lugar{{ categoria.total|pluralize:"es" }}</span>
+            </a>
+        {% empty %}
+            <p>Aún no hay categorías registradas.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
