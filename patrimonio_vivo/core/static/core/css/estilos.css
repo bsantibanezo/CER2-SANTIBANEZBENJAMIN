@@ -1,3 +1,4 @@
+/* ---------- Catálogo ---------- */
 .catalogo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -35,6 +36,15 @@
     margin: 0 0 0.25rem;
 }
 
+.lugar-card-titulo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.lugar-card-titulo a:hover {
+    text-decoration: underline;
+}
+
 .lugar-card-detalle {
     color: #6c757d;
     margin: 0 0 0.75rem;
@@ -47,3 +57,70 @@
     background: #e9ecef;
     font-size: 0.85rem;
 }
+
+/* ---------- Detalle de lugar ---------- */
+.lugar-detalle {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.lugar-detalle-img {
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.lugar-detalle-dato {
+    margin: 0.5rem 0;
+}
+
+/* ---------- Filtros por categoría ---------- */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.filtro {
+    padding: 0.3rem 0.9rem;
+    border: 1px solid #adb5bd;
+    border-radius: 999px;
+    color: inherit;
+    text-decoration: none;
+}
+
+.filtro.activo {
+    background: #212529;
+    border-color: #212529;
+    color: #fff;
+}
+
+/* ---------- Página de categorías ---------- */
+.categorias-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.categoria-item {
+    display: block;
+    padding: 1.25rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+}
+
+.categoria-item:hover {
+    border-color: #212529;
+}
+
+.categoria-item h2 {
+    font-size: 1.2rem;
+    margin: 0 0 0.5rem;
+}
+

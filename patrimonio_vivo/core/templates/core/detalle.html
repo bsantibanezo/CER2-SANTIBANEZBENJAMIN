@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ lugar.nombre }} · Patrimonio Vivo{% endblock %}
+
+{% block content %}
+    <a href="{% url 'catalogo' %}">&larr; Volver al catálogo</a>
+
+    <article class="lugar-detalle">
+        {% if lugar.imagen %}
+            <img src="{{ lugar.imagen }}" alt="{{ lugar.nombre }}" class="lugar-detalle-img">
+        {% endif %}
+        <div class="lugar-detalle-info">
+            <h1>{{ lugar.nombre }}</h1>
+            <span class="lugar-card-categoria">{{ lugar.categoria.nombre }}</span>
+            <p class="lugar-detalle-dato"><strong>Ubicación:</strong> {{ lugar.ubicacion }}</p>
+            <p class="lugar-detalle-dato"><strong>Año de construcción:</strong> {{ lugar.anio_construccion }}</p>
+            <p>{{ lugar.descripcion }}</p>
+        </div>
+    </article>
+{% endblock %}
