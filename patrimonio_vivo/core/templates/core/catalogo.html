@@ -6,12 +6,12 @@
     <h1 class="mb-4">Catálogo patrimonial</h1>
 
     <div class="filtros">
-        <a href="{% url 'catalogo' %}" class="filtro {% if not categoria_id %}activo{% endif %}">Todas</a>
-        {% for categoria in categorias %}
-            <a href="{% url 'catalogo' %}?categoria={{ categoria.pk }}"
-            class="filtro {% if categoria_id == categoria.pk %}activo{% endif %}">{{ categoria.nombre }}</a>
-        {% endfor %}
-    </div>
+    <a href="{% url 'catalogo' %}" class="filtro {% if not categoria_id %}activo{% endif %}">Todas</a>
+    {% for categoria in categorias %}
+        <a href="{% url 'catalogo' %}?categoria={{ categoria.pk }}"
+           class="filtro {% if categoria_id == categoria.pk %}activo{% endif %}">{{ categoria.nombre }}</a>
+    {% endfor %}
+</div>
 
     <div class="catalogo-grid">
         {% for lugar in lugares %}

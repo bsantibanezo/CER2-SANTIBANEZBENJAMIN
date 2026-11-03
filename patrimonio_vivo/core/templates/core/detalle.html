@@ -3,7 +3,7 @@
 {% block title %}{{ lugar.nombre }} · Patrimonio Vivo{% endblock %}
 
 {% block content %}
-    <a href="{% url 'catalogo' %}">&larr; Volver al catálogo</a>
+    <a href="{% url 'catalogo' %}" class="btn btn-outline-dark mb-3">&larr; Volver al catálogo</a>
 
     <article class="lugar-detalle">
         {% if lugar.imagen %}

@@ -8,7 +8,10 @@ from .models import Categoria, LugarPatrimonial
 
 
 def inicio(request):
-    contexto = {'nombre': 'Benjamín'}
+    contexto = {
+        'total_lugares': LugarPatrimonial.objects.count(),
+        'total_categorias': Categoria.objects.count(),
+    }
     return render(request, 'core/inicio.html', contexto)
 
 

@@ -3,7 +3,24 @@
 {% block title %}Inicio · Patrimonio Vivo{% endblock %}
 
 {% block content %}
-    <h1 class="text-primary">Fundación Patrimonio Vivo</h1>
-    <p>Hola, {{ nombre }}</p>
-    <p>Bienvenido a la Fundación Patrimonio Vivo. Esta es la página de inicio de nuestro sitio web.</p>
+        <section class="inicio-hero">
+        <h1>Fundación Patrimonio Vivo</h1>
+        <p class="lead">
+            Somos una organización sin fines de lucro dedicada a identificar, documentar
+            y difundir lugares de interés patrimonial en distintas ciudades de Chile.
+        </p>
+        <a href="{% url 'catalogo' %}" class="btn btn-dark btn-lg">Ver catálogo</a>
+        <a href="{% url 'categorias' %}" class="btn btn-outline-dark btn-lg">Explorar categorías</a>
+    </section>
+
+    <section class="inicio-cifras">
+        <div class="cifra">
+            <strong>{{ total_lugares }}</strong>
+            <span>lugares registrados</span>
+        </div>
+        <div class="cifra">
+            <strong>{{ total_categorias }}</strong>
+            <span>categorías patrimoniales</span>
+        </div>
+    </section>
 {% endblock %}
