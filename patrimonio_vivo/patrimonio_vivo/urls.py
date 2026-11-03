@@ -26,5 +26,8 @@ urlpatterns = [
     path('detalle/<int:pk>/', views.detalle, name='detalle'),
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('gestion/', views.gestion, name='gestion'),
+    path('gestion/nuevo/', views.lugar_crear, name='lugar_crear'),
+    path('gestion/<int:pk>/editar/', views.lugar_editar, name='lugar_editar'),
    
 ]
