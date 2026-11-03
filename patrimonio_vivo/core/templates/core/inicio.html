@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>inicio</title>
-</head>
-<body>
-    <h1>Fundación Patrimonio Vivo</h1>
+{% extends 'core/base.html' %}
+
+{% block title %}Inicio · Patrimonio Vivo{% endblock %}
+
+{% block content %}
+    <h1 class="text-primary">Fundación Patrimonio Vivo</h1>
     <p>Hola, {{ nombre }}</p>
-</body>
-</html>
+    <p>Bienvenido a la Fundación Patrimonio Vivo. Esta es la página de inicio de nuestro sitio web.</p>
+{% endblock %}
