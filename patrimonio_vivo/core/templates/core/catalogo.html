@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Catálogo · Patrimonio Vivo{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Catálogo patrimonial</h1>
+
+    <div class="catalogo-grid">
+        {% for lugar in lugares %}
+            <article class="lugar-card">
+                {% if lugar.imagen %}
+                    <img src="{{ lugar.imagen }}" alt="{{ lugar.nombre }}" class="lugar-card-img">
+                {% else %}
+                    <div class="lugar-card-img lugar-card-sin-imagen">Sin imagen</div>
+                {% endif %}
+                <div class="lugar-card-body">
+                    <h2 class="lugar-card-titulo">{{ lugar.nombre }}</h2>
+                    <p class="lugar-card-detalle">{{ lugar.ubicacion }} · {{ lugar.anio_construccion }}</p>
+                    <span class="lugar-card-categoria">{{ lugar.categoria.nombre }}</span>
+                </div>
+            </article>
+        {% empty %}
+            <p>Aún no hay lugares registrados.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

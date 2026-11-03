@@ -1,0 +1,49 @@
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.lugar-card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: #fff;
+}
+
+.lugar-card-img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.lugar-card-sin-imagen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9ecef;
+    color: #6c757d;
+}
+
+.lugar-card-body {
+    padding: 1rem;
+}
+
+.lugar-card-titulo {
+    font-size: 1.15rem;
+    margin: 0 0 0.25rem;
+}
+
+.lugar-card-detalle {
+    color: #6c757d;
+    margin: 0 0 0.75rem;
+}
+
+.lugar-card-categoria {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: #e9ecef;
+    font-size: 0.85rem;
+}
