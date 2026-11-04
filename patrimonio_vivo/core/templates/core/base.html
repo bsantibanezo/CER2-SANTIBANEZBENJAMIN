@@ -67,9 +67,15 @@
         {% block content %}{% endblock %}
     </main>
 
-    <footer class="pie mt-auto">
-        <div class="container text-center">
-            <p>&copy; 2026 Fundación Patrimonio Vivo. Todos los derechos reservados.</p>
+   <footer class="pie mt-auto">
+        <div class="container">
+            <div class="pie-fila">
+                <span class="pie-titulo">Patrimonio Vivo</span>
+                <span class="pie-contacto">
+                    Contáctanos: <a href="mailto:contacto@patrimoniovivo.cl">contacto@patrimoniovivo.cl</a>
+                </span>
+            </div>
+            <p class="pie-copy">&copy; {% now "Y" %} Fundación Patrimonio Vivo. Todos los derechos reservados.</p>
         </div>
     </footer>
 
