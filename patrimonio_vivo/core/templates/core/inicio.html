@@ -3,24 +3,44 @@
 {% block title %}Inicio · Patrimonio Vivo{% endblock %}
 
 {% block content %}
-        <section class="inicio-hero">
+    <section class="inicio-hero">
         <h1>Fundación Patrimonio Vivo</h1>
-        <p class="lead">
+        <p>
             Somos una organización sin fines de lucro dedicada a identificar, documentar
             y difundir lugares de interés patrimonial en distintas ciudades de Chile.
         </p>
-        <a href="{% url 'catalogo' %}" class="btn btn-dark btn-lg">Ver catálogo</a>
-        <a href="{% url 'categorias' %}" class="btn btn-outline-dark btn-lg">Explorar categorías</a>
     </section>
 
-    <section class="inicio-cifras">
-        <div class="cifra">
-            <strong>{{ total_lugares }}</strong>
-            <span>lugares registrados</span>
+    <section class="inicio-cifras-grid">
+        <div class="cifra-card">
+            <div class="cifra-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.304 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+            </div>
+            <div>
+                <span class="cifra-numero">{{ total_lugares }}</span>
+                <span class="cifra-texto">Lugar{{ total_lugares|pluralize:"es" }} registrado{{ total_lugares|pluralize }}</span>
+            </div>
         </div>
-        <div class="cifra">
-            <strong>{{ total_categorias }}</strong>
-            <span>categorías patrimoniales</span>
+
+        <div class="cifra-card">
+            <div class="cifra-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16" aria-hidden="true">
+                    <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5V4zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1H4z"/>
+                    <path d="M4.268 1H12a1 1 0 0 1 1 1v11.5a.5.5 0 0 1-.777.416L13 13.768V2a1 1 0 0 0-1-1H4.268z"/>
+                </svg>
+            </div>
+            <div>
+                <span class="cifra-numero">{{ total_categorias }}</span>
+                <span class="cifra-texto">Categoría{{ total_categorias|pluralize }} patrimonial{{ total_categorias|pluralize:"es" }}</span>
+            </div>
         </div>
+    </section>
+
+    <section class="inicio-acciones">
+        <a href="{% url 'catalogo' %}" class="btn-oro">Ver catálogo patrimonial</a>
+        <a href="{% url 'categorias' %}" class="btn-contorno">Explorar categorías</a>
     </section>
 {% endblock %}

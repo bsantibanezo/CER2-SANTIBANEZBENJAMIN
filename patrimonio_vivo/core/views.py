@@ -77,3 +77,4 @@ def lugar_editar(request, pk):
     else:
         form = LugarForm(instance=lugar)
     return render(request, 'core/lugar_form.html', {'form': form, 'titulo': 'Editar lugar'})
+

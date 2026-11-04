@@ -15,20 +15,22 @@
 
     <div class="catalogo-grid">
         {% for lugar in lugares %}
-            <article class="lugar-card">
-                {% if lugar.imagen %}
+          <article class="lugar-card">
+            {% if lugar.imagen %}
+                <div class="lugar-card-img-wrapper">
                     <img src="{{ lugar.imagen }}" alt="{{ lugar.nombre }}" class="lugar-card-img">
-                {% else %}
-                    <div class="lugar-card-img lugar-card-sin-imagen">Sin imagen</div>
-                {% endif %}
-                <div class="lugar-card-body">
-                    <h2 class="lugar-card-titulo">
-                        <a href="{% url 'detalle' lugar.pk %}">{{ lugar.nombre }}</a>
-                    </h2>
-                    <p class="lugar-card-detalle">{{ lugar.ubicacion }} · {{ lugar.anio_construccion }}</p>
-                    <span class="lugar-card-categoria">{{ lugar.categoria.nombre }}</span>
                 </div>
-            </article>
+            {% else %}
+                <div class="lugar-card-img lugar-card-sin-imagen">Sin imagen</div>
+            {% endif %}
+            <div class="lugar-card-body">
+                <h2 class="lugar-card-titulo">
+                    <a href="{% url 'detalle' lugar.pk %}">{{ lugar.nombre }}</a>
+                </h2>
+                <p class="lugar-card-detalle">{{ lugar.ubicacion }} · {{ lugar.anio_construccion }}</p>
+                <span class="lugar-card-categoria">{{ lugar.categoria.nombre }}</span>
+            </div>
+         </article>
         {% empty %}
             <p>Aún no hay lugares registrados.</p>
         {% endfor %}

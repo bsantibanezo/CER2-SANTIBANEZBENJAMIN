@@ -3,18 +3,48 @@
 {% block title %}{{ lugar.nombre }} · Patrimonio Vivo{% endblock %}
 
 {% block content %}
-    <a href="{% url 'catalogo' %}" class="btn btn-outline-dark mb-3">&larr; Volver al catálogo</a>
+    <div class="mb-4">
+        <a href="{% url 'catalogo' %}" class="btn-volver">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg>
+            Volver al catálogo
+        </a>
+    </div>
 
-    <article class="lugar-detalle">
+    <div class="lugar-detalle">
         {% if lugar.imagen %}
-            <img src="{{ lugar.imagen }}" alt="{{ lugar.nombre }}" class="lugar-detalle-img">
+            <div class="lugar-detalle-img-wrapper">
+                <img src="{{ lugar.imagen }}" alt="{{ lugar.nombre }}" class="lugar-detalle-img">
+            </div>
+        {% else %}
+            <div class="lugar-detalle-img lugar-card-sin-imagen">Sin imagen disponible</div>
         {% endif %}
+        
         <div class="lugar-detalle-info">
-            <h1>{{ lugar.nombre }}</h1>
-            <span class="lugar-card-categoria">{{ lugar.categoria.nombre }}</span>
-            <p class="lugar-detalle-dato"><strong>Ubicación:</strong> {{ lugar.ubicacion }}</p>
-            <p class="lugar-detalle-dato"><strong>Año de construcción:</strong> {{ lugar.anio_construccion }}</p>
-            <p>{{ lugar.descripcion }}</p>
+            <div>
+                <span class="badge-patrimonial">{{ lugar.categoria.nombre }}</span>
+            </div>
+            
+            <h1 class="lugar-detalle-titulo">{{ lugar.nombre }}</h1>
+
+            <div class="ficha-tecnica">
+                <div class="ficha-item">
+                    <span class="ficha-label">Ubicación</span>
+                    <span class="ficha-valor">{{ lugar.ubicacion }}</span>
+                </div>
+                <div class="ficha-item">
+                    <span class="ficha-label">Año de construcción</span>
+                    <span class="ficha-valor">{{ lugar.anio_construccion }}</span>
+                </div>
+            </div>
+
+            {% if lugar.descripcion %}
+                <div class="lugar-descripcion-box">
+                    <h3 class="descripcion-titulo">Descripción</h3>
+                    <p>{{ lugar.descripcion }}</p>
+                </div>
+            {% endif %}
         </div>
-    </article>
+    </div>
 {% endblock %}
