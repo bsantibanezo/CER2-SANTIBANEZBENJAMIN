@@ -45,7 +45,7 @@ Abrir http://127.0.0.1:8000/
 
 | Usuario | Contraseña | Qué puede hacer |
 |---|---|---|
-| admin | TU-CONTRASEÑA-ADMIN | Todo, incluido el Django Admin (`/admin/`) |
+| admin | admin | Todo, incluido el Django Admin (`/admin/`) |
 | editor | Patrimonio26 | Entrar a Gestión, agregar y editar lugares |
 | lector | Patrimonio26 | Entrar a Gestión, solo consultar |
 
