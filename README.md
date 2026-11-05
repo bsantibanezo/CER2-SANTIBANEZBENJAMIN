@@ -20,34 +20,61 @@ venv\Scripts\activate
 py -m pip install -r requirements.txt
 ```
 
-## Base de datos
+## Base de datos y datos de prueba
 
-El proyecto usa SQLite (`db.sqlite3`) y no requiere instalar ningún servidor. El repositorio ya incluye la base con categorías, lugares y usuarios de prueba.
-
-Para crearla desde cero:
+El proyecto usa SQLite y no requiere instalar ningún servidor. La base de datos
+no se incluye en el repositorio: se crea con los siguientes comandos.
 
 ```powershell
 cd patrimonio_vivo
 py manage.py migrate
+py -X utf8 manage.py loaddata datos_iniciales
+```
+
+- `migrate` crea las tablas y los permisos de Django.
+- `loaddata` carga las categorías y los lugares patrimoniales de prueba desde
+  `core/fixtures/datos_iniciales.json`. El parámetro `-X utf8` asegura que las
+  tildes se carguen correctamente en Windows.
+
+## Configuración de usuarios y permisos
+
+Las contraseñas no se publican en el repositorio. Cada usuario se crea al
+configurar el proyecto.
+
+**1. Administrador** (todos los permisos):
+
+```powershell
 py manage.py createsuperuser
 ```
+
+**2. Editor y lector.** Iniciar el servidor (ver sección siguiente), entrar a
+http://127.0.0.1:8000/admin/ con el administrador y en **Usuarios → Añadir
+usuario** crear:
+
+| Usuario | Permisos de usuario a asignar (en su ficha, sección "Permisos") |
+|---|---|
+| `editor` | `core | lugar patrimonial | Can add lugar patrimonial` y `Can change lugar patrimonial` |
+| `lector` | Ninguno |
+
+Para ambos, definir una contraseña a elección. No es necesario marcar "Es staff"
+ni "Es superusuario".
+
+### Qué puede hacer cada usuario
+
+| Usuario | Qué puede hacer |
+|---|---|
+| Visitante (sin sesión) | Ver inicio, catálogo, detalle y categorías |
+| `admin` | Todo, incluido el Django Admin (`/admin/`) |
+| `editor` | Entrar a Gestión, agregar y editar lugares |
+| `lector` | Entrar a Gestión, solo consultar |
 
 ## Ejecutar
 
 ```powershell
-cd patrimonio_vivo
 py manage.py runserver
 ```
 
 Abrir http://127.0.0.1:8000/
-
-## Usuarios de prueba
-
-| Usuario | Contraseña | Qué puede hacer |
-|---|---|---|
-| admin | admin | Todo, incluido el Django Admin (`/admin/`) |
-| editor | Patrimonio26 | Entrar a Gestión, agregar y editar lugares |
-| lector | Patrimonio26 | Entrar a Gestión, solo consultar |
 
 ## Páginas principales
 
