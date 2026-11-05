@@ -20,7 +20,7 @@
     <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
         <div class="table-responsive m-0">
             <table class="table table-hover align-middle mb-0">
-                <thead class="table-light text-uppercase fs-7 text-secondary">
+                <thead class="table-light text-uppercase text-secondary">
                     <tr>
                         <th class="py-3 ps-4">Nombre</th>
                         <th class="py-3">Categoría</th>
@@ -32,7 +32,7 @@
                 <tbody>
                     {% for lugar in lugares %}
                         <tr>
-                            <td class="ps-4 fw-semibold text-capitalize">{{ lugar.nombre }}</td>
+                            <td class="ps-4 fw-semibold ">{{ lugar.nombre }}</td>
                             <td>{{ lugar.categoria.nombre }}</td>
                             <td class="text-muted">{{ lugar.ubicacion }}</td>
                             <td class="text-muted">{{ lugar.anio_construccion }}</td>

@@ -20,7 +20,7 @@
 body {
     background: var(--crema);
     color: var(--texto);
-    font-family: sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
 }
 
 h1, h2, h3 {
