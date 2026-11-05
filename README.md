@@ -20,57 +20,55 @@ venv\Scripts\activate
 py -m pip install -r requirements.txt
 ```
 
+Si se trabaja desde el ZIP, basta con extraerlo, abrir la carpeta y ejecutar los
+comandos de `py -m venv venv` en adelante.
+
 ## Base de datos y datos de prueba
 
-El proyecto usa SQLite y no requiere instalar ningún servidor. La base de datos
-no se incluye en el repositorio: se crea con los siguientes comandos.
+El proyecto usa SQLite y no requiere instalar ningún servidor. La entrega incluye
+la base de datos `db.sqlite3` ya creada, con las categorías, los lugares
+patrimoniales y los usuarios de prueba, por lo que **no es necesario ejecutar
+migraciones** para probar la aplicación.
+
+Si se quiere crear la base desde cero:
 
 ```powershell
 cd patrimonio_vivo
 py manage.py migrate
-py -X utf8 manage.py loaddata datos_iniciales
-```
-
-- `migrate` crea las tablas y los permisos de Django.
-- `loaddata` carga las categorías y los lugares patrimoniales de prueba desde
-  `core/fixtures/datos_iniciales.json`. El parámetro `-X utf8` asegura que las
-  tildes se carguen correctamente en Windows.
-
-## Configuración de usuarios y permisos
-
-Las contraseñas no se publican en el repositorio. Cada usuario se crea al
-configurar el proyecto.
-
-**1. Administrador** (todos los permisos):
-
-```powershell
 py manage.py createsuperuser
 ```
 
-**2. Editor y lector.** Iniciar el servidor (ver sección siguiente), entrar a
-http://127.0.0.1:8000/admin/ con el administrador y en **Usuarios → Añadir
-usuario** crear:
+Luego, desde http://127.0.0.1:8000/admin/ se agregan las categorías y los lugares
+(Django Admin) y se crean los usuarios `editor` y `lector` según la sección
+siguiente.
 
-| Usuario | Permisos de usuario a asignar (en su ficha, sección "Permisos") |
-|---|---|
-| `editor` | `core | lugar patrimonial | Can add lugar patrimonial` y `Can change lugar patrimonial` |
-| `lector` | Ninguno |
+## Usuarios y permisos
 
-Para ambos, definir una contraseña a elección. No es necesario marcar "Es staff"
-ni "Es superusuario".
+La base de datos incluye tres usuarios de prueba. Las contraseñas no se publican
+en el repositorio.
 
-### Qué puede hacer cada usuario
+| Usuario | Permisos | Qué puede hacer |
+|---|---|---|
+| `admin` | Superusuario | Todo, incluido el Django Admin (`/admin/`) |
+| `editor` | `Can add` y `Can change` de *lugar patrimonial* | Entrar a Gestión, agregar y editar lugares |
+| `lector` | Ninguno | Entrar a Gestión, solo consultar |
 
-| Usuario | Qué puede hacer |
-|---|---|
-| Visitante (sin sesión) | Ver inicio, catálogo, detalle y categorías |
-| `admin` | Todo, incluido el Django Admin (`/admin/`) |
-| `editor` | Entrar a Gestión, agregar y editar lugares |
-| `lector` | Entrar a Gestión, solo consultar |
+Un visitante sin sesión puede ver inicio, catálogo, detalle y categorías.
+
+### Crear los usuarios desde cero
+
+1. Administrador: `py manage.py createsuperuser`.
+2. Iniciar el servidor, entrar a `/admin/` con el administrador y en
+   **Usuarios → Añadir usuario** crear `editor` y `lector` con una contraseña a elección.
+3. En la ficha de `editor`, sección **Permisos de usuario**, asignar:
+   - `core | lugar patrimonial | Can add lugar patrimonial`
+   - `core | lugar patrimonial | Can change lugar patrimonial`
+4. `lector` no lleva permisos. No es necesario marcar "Es staff" ni "Es superusuario".
 
 ## Ejecutar
 
 ```powershell
+cd patrimonio_vivo
 py manage.py runserver
 ```
 
